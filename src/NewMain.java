@@ -1,6 +1,6 @@
 package src;
 
-import src.netbeans.Calculadora;
+import src.netbeans.CalculadoraUI;
 
 /**
  * @author fsancheztemprano
@@ -8,7 +8,7 @@ import src.netbeans.Calculadora;
 public class NewMain {
     public static void main(String[] args) {
         
-            Calculadora c = new Calculadora();
+            CalculadoraUI c = new CalculadoraUI();
             c.setVisible(true);
 
     }
