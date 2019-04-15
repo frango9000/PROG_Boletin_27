@@ -8,7 +8,9 @@ package src.netbeans;
 import java.util.Stack;
 
 /**
- *
+ * Logica de Calculadora: lee una expresion matematica correctamente 
+ * formada y retorna el resultado Ej.  3 + 4 - (5 * 6) / 3 + 2 % 1
+ * 
  * @author NarF
  */
 public class Calculadora {
@@ -27,7 +29,11 @@ public class Calculadora {
     }
 
     /**
-     * Evaluate an expression
+     * procesamos la expresion la separamos en pilas y resolvemos las 
+     * operaciones una a una en orden de prioridades
+     * 
+     * @param expression - string con la expresion a resolver
+     * @return - resultado
      */
     public static double evaluateExpression(String expression) {
         // creamos una pila de operandos
@@ -81,24 +87,41 @@ public class Calculadora {
         }
         return operandStack.pop();
     }
-
+    /**
+     * realizamos la operacion matematica recibida con su operador correspondiente
+     * @param operandStack - lista con operandos
+     * @param operatorStack - lista de operadores
+     */
     public static void procesarOperador(Stack<Double> operandStack, Stack<Character> operatorStack) {
         char op = operatorStack.pop();
         double op1 = operandStack.pop();
         double op2 = operandStack.pop();
-        if (op == '+') {
-            operandStack.push(op2 + op1);
-        } else if (op == '-') {
-            operandStack.push(op2 - op1);
-        } else if (op == '*') {
-            operandStack.push(op2 * op1);
-        } else if (op == '/') {
-            operandStack.push(op2 / op1);
-        } else if (op == '%') {
-            operandStack.push(op2 % op1);
+        switch (op) {
+            case '+':
+                operandStack.push(op2 + op1);
+                break;
+            case '-':
+                operandStack.push(op2 - op1);
+                break;
+            case '*':
+                operandStack.push(op2 * op1);
+                break;
+            case '/':
+                operandStack.push(op2 / op1);
+                break;
+            case '%':
+                operandStack.push(op2 % op1);
+                break;
+            default:
+                break;
         }
     }
-
+    /**
+     * insertamos espacios entre cada caracter no numerico de la
+     * expresion para separarla con .split
+     * @param s - la expresion recibida 
+     * @return - la expresion con espacios insertados
+     */
     public static String insertarBlanks(String s) {
         String result = "";
         for (int i = 0; i < s.length(); i++) {
